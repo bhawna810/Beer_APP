@@ -4,10 +4,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import AllBeers from "../pages/AllBeers";
 import ProductDetails from "../pages/ProductDetails";
-import FavoriteHeaderUI from "../components/UI/favorite-section/FavoriteHeaderUI";
-// import FoodDetails from "../pages/FoodDetails";
-// import Cart from "../pages/Cart";
-// import Checkout from "../pages/Checkout";
+
+import FavroitePage from "../pages/FavroitePage";
 
 const Routers = () => {
   return (
@@ -16,8 +14,7 @@ const Routers = () => {
        <Route path="/home" element={<Home />} />
      <Route path="/beers" element={<AllBeers />} />
      <Route path="/beers/:id" element={<ProductDetails />} />
-     <Route path="/Favorites" element={<FavoriteHeaderUI />} />
-       {/*<Route path="/checkout" element={<Checkout />} /> */}
+     <Route path="/favorites" element={<FavroitePage />} />
     </Routes>
   );
 };

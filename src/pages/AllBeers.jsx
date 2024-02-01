@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ProductCard from "../components/UI/product-card/ProductCard";
 import { getAllProducts } from "../api";
-import { productActions } from "../store/shopping-cart/productSlice";
+import { productActions } from "../store/favorite-page/productSlice";
 
 
 import "../styles/all-foods.css";
@@ -32,31 +32,7 @@ const AllBeers = () => {
     }
   }, []);
 
-  // const [pageNumber, setPageNumber] = useState(0);
-
-  // const searchedProduct = products.filter((item) => {
-  //   if (searchTerm.value === "") {
-  //     return item;
-  //   }
-  //   if (item.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-  //     return item;
-  //   } else {
-  //     return console.log("not found");
-  //   }
-  // });
-
-  // const productPerPage = 12;
-  // const visitedPage = pageNumber * productPerPage;
-  // const displayPage = searchedProduct.slice(
-  //   visitedPage,
-  //   visitedPage + productPerPage
-  // );
-
-  // const pageCount = Math.ceil(searchedProduct.length / productPerPage);
-
-  // const changePage = ({ selected }) => {
-  //   setPageNumber(selected);
-  // };
+  
 
   return (
     <Cover title="All-Foods">
@@ -71,7 +47,7 @@ const AllBeers = () => {
                   type="text"
                   placeholder="I'm looking for...."
                   value={searchTerm}
-                  // onChange={(e) => setSearchTerm(e.target.value)}
+                 
                 />
                 <span>
                   <i class="ri-search-line"></i>
@@ -92,15 +68,6 @@ const AllBeers = () => {
               </Col>
             ))}
 
-            {/* <div>
-              <ReactPaginate
-                pageCount={pageCount}
-                onPageChange={changePage}
-                previousLabel={"Prev"}
-                nextLabel={"Next"}
-                containerClassName=" paginationBttns "
-              />
-            </div> */}
           </Row>
         </Container>
       </section>

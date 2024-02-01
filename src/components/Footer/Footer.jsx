@@ -39,7 +39,7 @@ const Footer = () => {
             <h5 className="footer__title">Contact</h5>
             <ListGroup className="deliver__time-list">
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
-                <p>Location: Karnataka, PIN-201000, Bengaluru</p>
+                <p>Location: UP, PIN-201000, Noida</p>
               </ListGroupItem>
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
                 <span>Phone: 08888888888</span>

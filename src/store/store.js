@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import favoriteSlice from "./shopping-cart/favoriteSlice";
-import favoriteUISlice from "./shopping-cart/favoriteUISlice";
-import productSlice from "./shopping-cart/productSlice";
+import favoriteSlice from "./favorite-page/favoriteSlice";
+import favoriteUISlice from "./favorite-page/favoriteUISlice";
+import productSlice from "./favorite-page/productSlice";
 
 const store = configureStore({
   reducer: {

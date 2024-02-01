@@ -5,7 +5,7 @@ import "../../../styles/product-card.css";
 import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { favoriteActions } from "../../../store/shopping-cart/favoriteSlice";
+import { favoriteActions } from "../../../store/favorite-page/favoriteSlice";
 
 const ProductCard = (props) => {
   const { id, name, image_url, ibu } = props.item;

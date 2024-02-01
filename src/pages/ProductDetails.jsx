@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-// import products from "../assets/fake-data/products";
 import { useParams } from "react-router-dom";
 import Cover from "../components/Cover/Cover";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 
 import { useDispatch , useSelector } from "react-redux";
-// import { cartActions } from "../store/shopping-cart/favoriteSlice";
 
 import "../styles/product-details.css";
 
-// import ProductCard from "../components/UI/product-card/ProductCard";
-import { favoriteActions } from "../store/shopping-cart/favoriteSlice";
+import { favoriteActions } from "../store/favorite-page/favoriteSlice";
 
 const ProductDetails = () => {
 
@@ -74,29 +71,6 @@ const ProductDetails = () => {
       <section>
         <Container>
           <Row>
-            {/* <Col lg="2" md="2">
-              <div className="product__images ">
-                <div
-                  className="img__item mb-3"
-                  onClick={() => setPreviewImg(product.image01)}
-                >
-                  <img src={product.image01} alt="" className="w-50" />
-                </div>
-                <div
-                  className="img__item mb-3"
-                  onClick={() => setPreviewImg(product.image02)}
-                >
-                  <img src={product.image02} alt="" className="w-50" />
-                </div>
-
-                <div
-                  className="img__item"
-                  onClick={() => setPreviewImg(product.image03)}
-                >
-                  <img src={product.image03} alt="" className="w-50" />
-                </div>
-              </div>
-            </Col>*/}
 
             <Col lg="4" md="4">
               <div className="product__main-img">
@@ -111,9 +85,6 @@ const ProductDetails = () => {
                   {" "}
                   Price: <span>₹{ibu}</span>
                 </p>
-                {/* <p className="category mb-5">
-                  Category: <span>{category}</span>
-                </p> */}
 
                 <button onClick={addItem} className="addTOCart__btn">
                   Add to Cart
@@ -195,15 +166,6 @@ const ProductDetails = () => {
               )}
             </Col>
 
-            {/* <Col lg="12" className="mb-5 mt-4">
-              <h2 className="related__Product-title">You might also like</h2>
-            </Col>
-
-            {relatedProduct.map((item) => (
-              <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>
-                <ProductCard item={item} />
-              </Col>
-            ))} */}
           </Row>
         </Container>
       </section>
