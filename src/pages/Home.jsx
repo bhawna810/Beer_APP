@@ -100,7 +100,7 @@ const Home = () => {
               <div className="hero__content  ">
                 <h5 className="mb-3">Easy way to make an order</h5>
                 <h1 className="mb-4 hero__title">
-                  <span>HUNGRY?</span> Just wait <br /> food at
+                  <span>Thirsty?</span> Just wait <br /> beers at
                   <span> your door</span>
                 </h1>
 
@@ -115,7 +115,7 @@ const Home = () => {
                   </button>
 
                   <button className="all__foods-btn">
-                    <Link to="/foods">See all foods</Link>
+                    <Link to="/beers">See all Beers</Link>
                   </button>
                 </div>
 
@@ -254,7 +254,7 @@ const Home = () => {
             <Col lg="6" md="6">
               <div className="why__tasty-treat">
                 <h2 className="tasty__treat-title mb-4">
-                  Why <span>Dil Foods?</span>
+                  Why <span>Cheers Beers?</span>
                 </h2>
                 <p className="tasty__treat-desc">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -266,8 +266,8 @@ const Home = () => {
                 <ListGroup className="mt-4">
                   <ListGroupItem className="border-0 ps-0">
                     <p className=" choose__us-title d-flex align-items-center gap-2 ">
-                      <i class="ri-checkbox-circle-line"></i> Fresh and tasty
-                      foods
+                      <i class="ri-checkbox-circle-line"></i> Fresh 
+                      Beer
                     </p>
                     <p className="choose__us-desc">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.

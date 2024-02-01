@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-// import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
+import { favoriteSliceUiActions } from "../../store/shopping-cart/favoriteUISlice";
 
 import "../../styles/header.css";
 
@@ -15,8 +15,8 @@ const nav__links = [
     path: "/home",
   },
   {
-    display: "Foods",
-    path: "/foods",
+    display: "Beers",
+    path: "/beers",
   },
   {
     display: "Cart",
@@ -40,7 +40,7 @@ const Header = () => {
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
   const toggleCart = () => {
-    // dispatch(cartUiActions.toggle());
+    dispatch(favoriteSliceUiActions.toggle());
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Header = () => {
            <Link to={`/home`}>
             { <>
                 <img src= "" alt="logo" />
-                <h5>Dil Foods</h5>
+                <h5>Cheers Beers</h5>
               </>
              }
             </Link>

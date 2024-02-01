@@ -12,7 +12,7 @@ const Footer = () => {
           <Col lg="3" md="4" sm="6">
             <div className=" footer__logo text-start">
               <img src="" alt="logo" />
-              <h5>Dil Foods</h5>
+              <h5>Cheers Beers</h5>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Nesciunt pariatur accusamus

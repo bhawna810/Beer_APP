@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import cartSlice from "./shopping-cart/cartSlice";
-// import cartUiSlice from "./shopping-cart/cartUiSlice";
+import favoriteSlice from "./shopping-cart/favoriteSlice";
+import favoriteUISlice from "./shopping-cart/favoriteUISlice";
+import productSlice from "./shopping-cart/productSlice";
 
 const store = configureStore({
   reducer: {
-    // cart: cartSlice.reducer,
-    // cartUi: cartUiSlice.reducer,
+    favorite: favoriteSlice.reducer,
+    favoriteUi: favoriteUISlice.reducer,
+    product: productSlice.reducer
   },
 });
 
