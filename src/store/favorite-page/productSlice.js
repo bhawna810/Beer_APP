@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useState } from "react";
+// import { useState } from "react";
 
 const itemss =
   localStorage.getItem("productItems") !== null
@@ -14,23 +16,29 @@ const initialState = {
 };
 // console.log("Heelo productslice" + initialState.productItems.length);
 
+
 const productSlice = createSlice({
     name: "product",
     initialState,
-  
+   
     reducers: {
        
+
         addProduct(state, action) {
-            
+           
             const newItem = action.payload;
             // console.log("Heelo productslice" + newItem);
-            const existingItems = state.productItems.length;
+            // const existingItems = state.productItems.length;
       
-            if (existingItems === 0) {
-              state.productItems = newItem;
-            } 
-      
-            setProduct(newItem);
+            // if (existingItems === 0) {
+            //   state.productItems. = newItem;
+            // } 
+            // newItem.foreach((item) => {
+            //   state.productItems.push(item);
+            // })
+
+            state.productItems = [...state.productItems, ...newItem];
+            setProduct(state.productItems);
           },
     },
   });

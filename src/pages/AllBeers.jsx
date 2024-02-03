@@ -6,7 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import ProductCard from "../components/UI/product-card/ProductCard";
-import { getAllProducts } from "../api";
+import { getAllProducts, getSearchedProduct } from "../api";
 import { productActions } from "../store/favorite-page/productSlice";
 
 
@@ -16,21 +16,105 @@ import "../styles/all-foods.css";
 const AllBeers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  
-  const productData = useSelector((state) => state.product.productItems);
+  const [searchedProduct, setSearchedProduct] = useState("");
 
-  // console.log(productData);
+  const productData = useSelector((state) => state.product.productItems);
+ 
+  
+  const [page, setPage] = useState(1);
+
+  const fetchData = async () => {
+    // setIsLoading(true);
+    // setError(null);
+    console.log("page value inside function" + page);
+    try {
+      const response = await fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=4`);
+      const data = await response.json();
+    
+      dispatch(productActions.addProduct(data ));
+     
+    } catch (error) {
+      console.log(error);
+    } 
+  };
+
 
   useEffect(() => {
-    // console.log(productData);
-     if (productData) {
-
-      getAllProducts().then((data) => {
-         dispatch(productActions.addProduct(data));
-        //  console.log("Heelo data" + JSON.stringify(data) );
-      });
+    fetchData();
+  }, [page]);
+  
+  const handleScroll = () => {
+    try{
+      if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+        setPage((prev) => prev +1);
+        console.log(page);
+      }
+    }catch(error){
+      console.log(error);
     }
+  };
+  
+  useEffect(() => {
+    console.log("second ussefect calling" + page);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
+  // search using debounce
+  // let finalData;
+
+
+  const useDebounce = (value, delay) => {
+    const [debounceValue,setDebounceValue]=useState(value);
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebounceValue(value);
+        }, delay);
+        return () => {
+            clearTimeout(handler)
+        }
+    }, [value,delay])
+    
+    return debounceValue;
+}
+
+  const debouceSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    if(debouceSearchTerm) {
+      fetchProduct(debouceSearchTerm);
+    }else {
+      setSearchedProduct("");
+      console.log('Something else')
+    }
+  },[debouceSearchTerm]) 
+
+  const fetchProduct = (value) => getSearchedProduct(value, setSearchedProduct);
+  // const fetchProduct = (value) => {
+  //   fetch(`https://api.punkapi.com/v2/beers?beer_name=${value}`)
+  //   .then((res) => res.json())
+  //   .then((response) => {
+  //      console.log('Reponse', response);
+  //     setSearchedProduct(response);
+  //   })
+  // }
+//  let count =1;
+//   console.log(typeof(searchTerm));
+  console.log(searchedProduct);
+
+
+  // useEffect(() => {
+  //   // console.log(productData);
+  //    if (productData) {
+
+  //     getAllProducts().then((data) => {
+  //        dispatch(productActions.addProduct(data));
+  //       //  console.log("Heelo data" + JSON.stringify(data) );
+  //     });
+  //   }
+  // }, []);
 
   
 
@@ -47,7 +131,7 @@ const AllBeers = () => {
                   type="text"
                   placeholder="I'm looking for...."
                   value={searchTerm}
-                 
+                  onChange={(e)=>setSearchTerm(e.target.value)}
                 />
                 <span>
                   <i class="ri-search-line"></i>
@@ -61,12 +145,29 @@ const AllBeers = () => {
                 </select>
               </div>
             </Col>
-
-            {productData.map((item) => (
-              <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                <ProductCard item={item} />
-              </Col>
-            ))}
+            
+            {
+              searchedProduct ? searchedProduct.map((item) => (
+                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                  <ProductCard item={item} />
+                </Col>
+              )) : productData.map((item) => (
+                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                  <ProductCard item={item} />
+                </Col>
+              ))
+            }
+             
+           
+            {/* {
+              productData.map((item) => (
+                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                  <ProductCard item={item} />
+                </Col>
+              ))
+            } */}
+             
+            
 
           </Row>
         </Container>
