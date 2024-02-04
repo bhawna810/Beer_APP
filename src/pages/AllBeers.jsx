@@ -17,26 +17,34 @@ const AllBeers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const [searchedProduct, setSearchedProduct] = useState("");
-
+  // const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const productData = useSelector((state) => state.product.productItems);
  
   
   const [page, setPage] = useState(1);
 
-  const fetchData = async () => {
-    // setIsLoading(true);
-    // setError(null);
-    console.log("page value inside function" + page);
-    try {
-      const response = await fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=4`);
-      const data = await response.json();
+  // const fetchData = async () => {
+  //   // setIsLoading(true);
+  //   // setError(null);
+  //   console.log("page value inside function" + page);
+  //   try {
+  //     const response = await fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=4`);
+  //     const data = await response.json();
     
-      dispatch(productActions.addProduct(data ));
+  //     dispatch(productActions.addProduct(data ));
      
-    } catch (error) {
-      console.log(error);
-    } 
-  };
+  //   } catch (error) {
+  //     console.log(error);
+  //   } 
+  // };
+
+  const fetchData = () => {
+    getAllProducts(page, setError).then((data) => {
+              dispatch(productActions.addProduct(data));
+              // setIsLoading(false);
+      });
+  }
 
 
   useEffect(() => {
@@ -47,6 +55,7 @@ const AllBeers = () => {
     try{
       if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
         setPage((prev) => prev +1);
+        // setIsLoading(false);
         console.log(page);
       }
     }catch(error){
@@ -154,6 +163,7 @@ const AllBeers = () => {
               )) : productData.map((item) => (
                 <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
                   <ProductCard item={item} />
+                  {/* {isLoading && <div>Loading...</div>} */}
                 </Col>
               ))
             }
